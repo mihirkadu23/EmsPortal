@@ -1,0 +1,114 @@
+﻿@model EmsPotral.Models.Emp
+
+@{
+    ViewData["Title"] = "Find Employee";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">🔍 Find Employee By ID</h2>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Details" method="post">
+
+                <div class="row align-items-end">
+
+                    <div class="col-md-8">
+                        <label class="form-label fw-bold">
+                            Enter Employee ID
+                        </label>
+
+                        <input type="number"
+                               name="id"
+                               class="form-control"
+                               placeholder="Enter Employee ID"
+                               required />
+                    </div>
+
+                    <div class="col-md-4">
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+                            🔍 Search Employee
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger mt-4">
+            @ViewBag.Message
+        </div>
+    }
+
+    @if (Model != null)
+    {
+        <div class="card shadow mt-4 border-0">
+
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">👤 Employee Details</h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Employee ID:</strong> @Model.EmpId
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Employee Name:</strong> @Model.EmpName
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Email Address:</strong> @Model.EmailID
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Age:</strong> @Model.Age
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Phone Number:</strong> @Model.Phoneno
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Department:</strong>
+                        <span class="badge bg-info text-dark">
+                            @Model.Role
+                        </span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Salary:</strong> ₹@Model.Salary
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Manager Name:</strong> @Model.MrgName
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <strong>Joining Date:</strong>
+                        @Model.JoiningDate.ToString("dd-MMM-yyyy")
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>

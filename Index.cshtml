@@ -1,0 +1,196 @@
+﻿@* @{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To Employee Management Portal</h1>
+    
+</div>
+<br />
+<br />
+<hr />
+
+@model IEnumerable<EmsPotral.Models.Emp>
+
+<h2>Employees List</h2>
+
+<a asp-controller="Emp"
+   asp-action="Create"
+   class="btn btn-primary">
+    ➕ Add New Employee
+</a>
+<br />
+<br />
+<hr />
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>EmailId</th>
+        <th>Age</th>
+        <th>Phoneno</th>
+        <th>Dept</th>
+        <th>Salary</th>
+        <th>Manager Name</th>
+        <th>Joining Date</th>
+
+    </tr>
+
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.EmpId</td>
+            <td>@employee.EmpName</td>
+            <td>@employee.EmailID</td>
+            <td>@employee.Age</td>
+            <td>@employee.Phoneno</td>
+            <td>@employee.Role</td>
+            <td>@employee.Salary</td>
+            <td>@employee.MrgName</td>
+            <td>@employee.JoiningDate</td>
+            <td>
+                <a asp-action="Details"
+                   asp-route-id="@employee.EmpId"
+                   class="btn btn-info btn-sm">
+                    Details
+                </a>
+
+                <a asp-action="Edit"
+                   asp-route-id="@employee.EmpId"
+                   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+
+                <a asp-action="Delete"
+                   asp-route-id="@employee.EmpId"
+                   class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+ *@
+
+@model IEnumerable<EmsPotral.Models.Emp>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-4">
+
+    <!-- Welcome Section -->
+    <div class="card shadow-lg border-0 bg-primary text-white mb-4">
+        <div class="card-body text-center py-5">
+            <h1 class="display-4 fw-bold">
+                Welcome To Employee Management Portal
+            </h1>
+            <p class="lead">
+                Manage Employees Efficiently & Professionally
+            </p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-primary">Employees List</h2>
+
+        <a asp-controller="Emp"
+           asp-action="Create"
+           class="btn btn-success">
+            ➕ Add New Employee
+        </a>
+    </div>
+
+    <!-- Table Card -->
+    <div class="card shadow border-0">
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-striped align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Phone</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>Manager</th>
+                            <th>Joining Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var employee in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        @employee.EmpId
+                                    </span>
+                                </td>
+
+                                <td>@employee.EmpName</td>
+
+                                <td>@employee.EmailID</td>
+
+                                <td>@employee.Age</td>
+
+                                <td>@employee.Phoneno</td>
+
+                                <td>
+                                    <span class="badge bg-info text-dark">
+                                        @employee.Role
+                                    </span>
+                                </td>
+
+                                <td>
+                                    ₹ @employee.Salary
+                                </td>
+
+                                <td>@employee.MrgName</td>
+
+                                <td>
+                                    @employee.JoiningDate.ToString("dd-MMM-yyyy")
+                                </td>
+
+                                <td>
+                                    <a asp-action="Details"
+                                       asp-route-id="@employee.EmpId"
+                                       class="btn btn-info btn-sm">
+                                        👁 Details
+                                    </a>
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@employee.EmpId"
+                                       class="btn btn-warning btn-sm">
+                                        ✏ Edit
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@employee.EmpId"
+                                       class="btn btn-danger btn-sm">
+                                        🗑 Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
